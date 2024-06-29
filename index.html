@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Taskie: Organiza tu vida y maximiza tu productividad" />
+    <meta name="description" content="Gestiona tus tareas y alcanza tus objetivos de manera eficiente con una herramienta efectiva en todo momento. ¡Empieza hoy y transforma tu rutina!" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://taskie.vercel.app/" />
+    <meta property="og:title" content="Taskie: Organiza tu vida y maximiza tu productividad" />
+    <meta property="og:description" content="Gestiona tus tareas y alcanza tus objetivos de manera eficiente con una herramienta efectiva en todo momento. ¡Empieza hoy y transforma tu rutina!" />
+    <meta property="og:image" content="assets/img/Meta-OG.webp" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://taskie.vercel.app/" />
+    <meta property="twitter:title" content="Taskie: Organiza tu vida y maximiza tu productividad" />
+    <meta property="twitter:description" content="Gestiona tus tareas y alcanza tus objetivos de manera eficiente con una herramienta efectiva en todo momento. ¡Empieza hoy y transforma tu rutina!" />
+    <meta property="twitter:image" content="assets/img/Meta-OG.webp" />
+    
+    <title>Taskie</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icon/favicon-16x16.png">
+    <link rel="manifest" href="assets/icon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Libraries CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item nav__item--logo">
+                    <a href="#" class="nav__link">
+                        <figure class="nav__figure">
+                            <img src="assets/img/Logo.webp" alt="Logo de aplicación de Taskie" class="nav__img" loading="lazy">
+                        </figure>
+                        <span class="nav__span nav__span--logo">Taskie</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link nav__link--active" aria-label="Ir a la sección de la aplicación To-Do List">
+                        <i class="ri-dashboard-horizontal-line"></i> <span class="nav__span">To-Do</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <button class="nav__link nav__link--btn" aria-label="Reiniciar Base de Datos" id="restartDb">
+                        <i class="ri-restart-line"></i> <span class="nav__span">Reiniciar</span>
+                    </button>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link" aria-label="Visitar portafolio del desarrollador">
+                        <i class="ri-terminal-window-line"></i> <span class="nav__span">Portafolio</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="https://www.youtube.com/@todocodigo" target="_blank" rel="noopener, noreferrer" class="nav__link" aria-label="Visitar canal de Youtube del desarrollador">
+                        <i class="ri-youtube-line"></i> <span class="nav__span">Youtube</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="https://github.com/eddiedev14" target="_blank" rel="noopener, noreferrer" class="nav__link" aria-label="Visitar github del desarrollador">
+                        <i class="ri-github-line"></i> <span class="nav__span">Github</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="hero">
+            <h1 class="hero__title">Organiza tu vida y maximiza tu productividad</h1>
+            <p class="hero__paragraph">Simplifica tus tareas diarias y alcanza tus metas con nuestra aplicación de lista de pendientes.</p>
+            <div class="hero__cta">
+                <a href="#" class="hero__link hero__link--primary">Tomar notas ahora <i class="ri-arrow-right-line"></i></a>
+                <a href="#" class="hero__link hero__link--secondary">Ver más proyectos</a>
+            </div>
+        </section>
+    </header>
+
+    <main class="main">
+        <section class="actions">
+            <h2 class="actions__title">Acciones y Reportes</h2>
+            <div class="actions__group">
+                <button class="actions__button actions__button--green" id="addTask">Añadir Tarea</button>
+                <button class="actions__button actions__button--blue" id="checkAll">Marcar Todo</button>
+                <button class="actions__button actions__button--orange" id="uncheckAll">Desmarcar Todo</button>
+                <button class="actions__button actions__button--red" id="deleteAll">Borrar Todo</button>
+            </div>
+            <section class="actions__reports">
+                <div class="actions__item">
+                    <div class="actions__icon actions__icon--green">
+                        <i class="ri-checkbox-circle-fill"></i>
+                    </div>
+                    <div class="actions__content">
+                        <div class="actions__statistic">
+                            <strong class="actions__percent" id="completedPercent" aria-label="Porcentaje de tareas completadas"></strong>
+                            <span class="actions__label">Completadas</span>
+                        </div>
+                        <div class="actions__progress">
+                            <div class="actions__bar"></div>
+                            <div class="actions__completed actions__completed--green"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions__item">
+                    <div class="actions__icon actions__icon--yellow">
+                        <i class="ri-error-warning-fill"></i>
+                    </div>
+                    <div class="actions__content">
+                        <div class="actions__statistic">
+                            <strong class="actions__percent" id="pendingPercent" aria-label="Porcentaje de tareas sin completar"></strong>
+                            <span class="actions__label">Pendientes</span>
+                        </div>
+                        <div class="actions__progress">
+                            <div class="actions__bar"></div>
+                            <div class="actions__completed actions__completed--yellow"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="todo">
+            <h2 class="todo__title">To-Do List</h2>
+            <section class="swiper todo__calendar">
+                <div class="swiper-wrapper todo__wrapper">
+                    <button class="swiper-slide todo__day">
+                        <span class="todo__number" data-add="-2"></span>
+                        <span class="todo__weekday"></span>
+                    </button>
+                    <button class="swiper-slide todo__day">
+                        <span class="todo__number" data-add="-1"></span>
+                        <span class="todo__weekday"></span>
+                    </button>
+                    <button class="swiper-slide todo__day todo__day--active">
+                        <span class="todo__number" data-add="0"></span>
+                        <span class="todo__weekday"></span>
+                    </button>
+                    <button class="swiper-slide todo__day">
+                        <span class="todo__number" data-add="1"></span>
+                        <span class="todo__weekday"></span>
+                    </button>
+                    <button class="swiper-slide todo__day">
+                        <span class="todo__number" data-add="2"></span>
+                        <span class="todo__weekday"></span>
+                    </button>
+                    <button class="swiper-slide todo__day">
+                        <span class="todo__number" data-add="3"></span>
+                        <span class="todo__weekday"></span>
+                    </button>
+                    <button class="swiper-slide todo__day">
+                        <span class="todo__number" data-add="4"></span>
+                        <span class="todo__weekday"></span>
+                    </button>
+                </div>
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev todo__navigation"></div>
+                <div class="swiper-button-next todo__navigation"></div>
+            </section>
+
+            <section class="todo__tasks">
+                <form action="#" class="todo__form">
+                    <div class="todo__field">
+                        <label for="filter" class="todo__label">Filtrar Tareas</label>
+                        <select name="filter" id="filter" class="todo__select">
+                            <option value="" aria-label="Selecciona la categoría por la que deseas filtrar" class="todo__option" selected>Selecciona una opción</option>
+                            <option value="Personal" class="todo__option">Personal</option>
+                            <option value="Trabajo" class="todo__option">Trabajo</option>
+                            <option value="Hobby" class="todo__option">Hobby</option>
+                            <option value="Finanzas" class="todo__option">Finanzas</option>
+                            <option value="Educación" class="todo__option">Educación</option>
+                            <option value="Hogar" class="todo__option">Hogar</option>
+                            <option value="Social" class="todo__option">Social</option>
+                            <option value="Proyectos" class="todo__option">Proyectos</option>
+                        </select>
+                    </div>
+                </form>
+
+                <div class="todo__pending">
+                    <ul class="todo__list"></ul>
+                </div>
+
+                <div class="todo__line"></div>
+
+                <div class="todo__completed">
+                    <ul class="todo__list"></ul>
+                </div>
+            </section>
+        </section>
+    </main>
+
+     <!-- Create Task Modal -->
+     <dialog class="modal">
+        <section class="modal__content">
+            <header class="modal__header">
+                <h5 class="modal__title">Crear Tarea</h5>
+                <button class="modal__icon" aria-label="Cerrar ventana modal de crear tarea"><i class="ri-close-line"></i></button>
+            </header>
+            <form action="#" class="modal__form" data-action="add">
+                <div class="modal__error">
+                    <span class="modal__span">Todos los campos son obligatorios</span>
+                </div>
+                <div class="modal__field">
+                    <label for="taskName" class="modal__label">Nombre de la Tarea</label>
+                    <input type="text" class="modal__input" id="taskName" placeholder="Revisar Correos Electrónicos..." autocomplete="off">
+                </div>
+                <div class="modal__field">
+                    <label for="taskDescription" class="modal__label">Descripción de la Tarea</label>
+                    <input type="text" class="modal__input" id="taskDescription" placeholder="Responder correos de 8:00 am a 10:am..." autocomplete="off">
+                </div>
+                <div class="modal__field">
+                    <label for="taskCategory" class="modal__label">Categoría</label>
+                    <select id="taskCategory" class="modal__select">
+                        <option value="" aria-label="Selecciona la categoría más relacionada con tu tarea" selected disabled>Selecciona una opción</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Trabajo">Trabajo</option>
+                        <option value="Hobby">Hobby</option>
+                        <option value="Finanzas">Finanzas</option>
+                        <option value="Educación">Educación</option>
+                        <option value="Hogar">Hogar</option>
+                        <option value="Social">Social</option>
+                        <option value="Proyectos">Proyectos</option>
+                    </select>
+                </div>
+                <div class="modal__field">
+                    <label for="taskDate" class="modal__label">Fecha de la Tarea</label>
+                    <input type="date" class="modal__input" id="taskDate">
+                </div>
+                <footer class="modal__footer">
+                    <button type="button" class="modal__button modal__button--cancel">Cancelar</button>
+                    <button type="submit" class="modal__button modal__button--submit">Crear Tarea</button>
+                </footer>
+            </form>
+        </section>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js" integrity="sha512-4F1cxYdMiAW98oomSLaygEwmCnIP38pb4Kx70yQYqRwLVCs3DbRumfBq82T08g/4LJ/smbFGFpmeFlQgoDccgg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/script.min.js"></script>
+</body>
+</html>
